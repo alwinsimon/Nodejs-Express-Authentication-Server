@@ -1,6 +1,6 @@
 import request from "supertest";
 
-import { app } from "../../app";
+import { app } from "../../../app";
 import { response } from "express";
 
 it("Sign-Out Route Test: Check if Cookies are Cleared on successful Sign-Out.", async () => {

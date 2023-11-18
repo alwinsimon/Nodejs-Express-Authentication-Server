@@ -1,6 +1,6 @@
 import request from "supertest";
 
-import { app } from "../../app";
+import { app } from "../../../app";
 import { response } from "express";
 
 it("Current-User Route Test: Check for Valid User Data Return - Returns current user data on success.", async () => {

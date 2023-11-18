@@ -1,6 +1,6 @@
 import request from "supertest";
 
-import { app } from "../../app";
+import { app } from "../../../app";
 import { response } from "express";
 
 it("Sign-In Route Test: Valid Credentials - Returns a 200 on successful Sign-In.", async () => {

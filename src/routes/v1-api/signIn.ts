@@ -4,13 +4,13 @@ import jwt from "jsonwebtoken";
 import { body } from "express-validator";
 import { validateRequest, BadRequestError } from "@bookmyseat/common";
 
-import { User } from "../models/user";
-import { Password } from "../utils/password";
+import { User } from "../../models/user";
+import { Password } from "../../utils/password";
 
 const router = express.Router();
 
 router.post(
-  "/api/v1/signin",
+  "/signin",
   [
     body("email").isEmail().withMessage("Provide a valid email."),
     body("password")

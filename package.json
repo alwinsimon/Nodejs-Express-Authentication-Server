@@ -7,7 +7,8 @@
     "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
     "test": "jest --watchAll --no-cache",
     "test:ci": "jest",
-    "build": "tsc",
+    "clean": "del ./dist",
+    "build": "npm run clean && tsc",
     "server": "npm run build && node dist/index.js"
   },
   "jest": {
@@ -27,6 +28,7 @@
     "@types/jsonwebtoken": "^9.0.3",
     "@types/mongoose": "^5.11.97",
     "cookie-session": "^2.0.0",
+    "del-cli": "^5.1.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",

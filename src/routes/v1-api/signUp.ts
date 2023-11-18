@@ -4,7 +4,8 @@ import jwt from "jsonwebtoken";
 
 import { User } from "../../models/user";
 
-import { validateRequest, BadRequestError } from "@bookmyseat/common";
+import { validateRequest } from "base-auth-handler";
+import { BadRequestError } from "base-error-handler";
 
 const router = express.Router();
 

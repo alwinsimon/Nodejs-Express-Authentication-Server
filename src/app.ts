@@ -4,7 +4,7 @@ import { json } from "body-parser";
 
 import cookieSession from "cookie-session";
 
-import { errorHandler, NotFoundError } from "@bookmyseat/common";
+import { errorHandler, NotFoundError } from "base-error-handler";
 
 import v1APIs from "./routes/v1-routes";
 

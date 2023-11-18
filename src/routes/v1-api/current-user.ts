@@ -1,5 +1,5 @@
 import express from "express";
-import { currentUser } from "@bookmyseat/common";
+import { currentUser } from "base-auth-handler";
 
 const router = express.Router();
 

@@ -6,7 +6,7 @@ import { response } from "express";
 it("Sign-Out Route Test: Check if Cookies are Cleared on successful Sign-Out.", async () => {
   // Sign-Up to Create a New User
   await request(app)
-    .post("/api/users/signup")
+    .post("/api/v1/signup")
     .send({
       email: "tester@test.com",
       password: "password@123",
@@ -14,7 +14,7 @@ it("Sign-Out Route Test: Check if Cookies are Cleared on successful Sign-Out.", 
     .expect(201);
   // Sign-Out with same User credentials
   const response = await request(app)
-    .post("/api/users/signout")
+    .post("/api/v1/signout")
     .send({})
     .expect(200);
 

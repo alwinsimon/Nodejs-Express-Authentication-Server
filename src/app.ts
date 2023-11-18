@@ -28,7 +28,7 @@ app.use(
 app.get("/", (req, res) => {
   res
     .status(200)
-    .json(`${process.env.APPLICATION_NAME} and Systems are Up & Running.`);
+    .json({status: `${process.env.APPLICATION_NAME} and Systems are Up & Running.`});
 });
 
 //? ===================== Routes Configuration =====================

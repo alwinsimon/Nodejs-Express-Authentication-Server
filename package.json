@@ -6,7 +6,9 @@
   "scripts": {
     "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
     "test": "jest --watchAll --no-cache",
-    "test:ci": "jest"
+    "test:ci": "jest",
+    "build": "tsc",
+    "server": "npm run build && node dist/index.js"
   },
   "jest": {
     "preset": "ts-jest",

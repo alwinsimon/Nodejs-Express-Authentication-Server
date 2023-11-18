@@ -4,13 +4,9 @@ import { json } from "body-parser";
 
 import cookieSession from "cookie-session";
 
-import { errorHandler, NotFoundError } from "@bookmyseat/common";
+import { errorHandler, NotFoundError } from "base-error-handler";
 
-import { currentUserRouter } from "./routes/current-user";
-import { signInRouter } from "./routes/signIn";
-import { signOutRouter } from "./routes/signOut";
-import { signUpRouter } from "./routes/signUp";
-
+import v1APIs from "./routes/v1-routes";
 
 const app = express();
 
@@ -22,17 +18,21 @@ app.use(json());
 app.use(
   cookieSession({
     signed: false, // To keep the data inside cookie un-encrypted.
-    secure: process.env.NODE_ENV !== "test", /* To keep it a https only cookie.
-    The value will be false in test environment to allow sending cookie over http also.*/
+    secure:
+      process.env.NODE_ENV !== "development" /* To keep it a https only cookie.
+    The value will be false in development environment to allow sending cookie over http also.*/,
   })
 );
 
+//? ===================== Application Home Route =====================
+app.get("/health", (req, res) => {
+  res
+    .status(200)
+    .json({status: `${process.env.APPLICATION_NAME} and Systems are Up & Running.`});
+});
 
-
-app.use(currentUserRouter);
-app.use(signInRouter);
-app.use(signOutRouter);
-app.use(signUpRouter);
+//? ===================== Routes Configuration =====================
+app.use("/api/v1", v1APIs);
 
 // Resource Not Found Error Configuration
 app.all("*", () => {

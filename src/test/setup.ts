@@ -1,8 +1,10 @@
+// Setting NODE_ENV to "development" for testing - to avoid cookies to be set as https only
+process.env.NODE_ENV = "development";
+
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
 import request from "supertest";
 import { app } from "../app";
-
 
 // Declaring the function testUserSignUp to the global scope so that it can be accessed anywhere within this application
 declare global {
@@ -51,7 +53,7 @@ global.testUserSignUp = async () => {
   const password = "password@123";
 
   const response = await request(app)
-    .post("/api/users/signup")
+    .post("/api/v1/signup")
     .send({ email: email, password: password })
     .expect(201);
 

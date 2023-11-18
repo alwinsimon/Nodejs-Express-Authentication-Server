@@ -2,15 +2,16 @@ import express, { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
 import { body } from "express-validator";
-import { validateRequest, BadRequestError } from "@bookmyseat/common";
+import { validateRequest } from "base-auth-handler";
+import { BadRequestError } from "base-error-handler";
 
-import { User } from "../models/user";
-import { Password } from "../utils/password";
+import { User } from "../../models/user";
+import { Password } from "../../utils/password";
 
 const router = express.Router();
 
 router.post(
-  "/api/v1/signin",
+  "/signin",
   [
     body("email").isEmail().withMessage("Provide a valid email."),
     body("password")

@@ -1,9 +1,9 @@
 import express from "express";
-import { currentUser } from "@bookmyseat/common";
+import { currentUser } from "base-auth-handler";
 
 const router = express.Router();
 
-router.get("/api/v1/currentuser", currentUser, (req, res) => {
+router.get("/currentuser", currentUser, (req, res) => {
   res.send({ currentUser: req.currentUser || null });
 });
 

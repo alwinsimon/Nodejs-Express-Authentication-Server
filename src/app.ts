@@ -25,7 +25,7 @@ app.use(
 );
 
 //? ===================== Application Home Route =====================
-app.get("/", (req, res) => {
+app.get("/health", (req, res) => {
   res
     .status(200)
     .json({status: `${process.env.APPLICATION_NAME} and Systems are Up & Running.`});

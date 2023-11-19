@@ -2,7 +2,7 @@ import express from "express";
 import "express-async-errors"; // Package used to handle async errors
 import { json } from "body-parser";
 
-import cookieSession from "cookie-session";
+import cookieParser from "cookie-parser";
 
 import { errorHandler, NotFoundError } from "base-error-handler";
 
@@ -15,20 +15,16 @@ app.set("trust proxy", true);
 
 app.use(json());
 
-app.use(
-  cookieSession({
-    signed: false, // To keep the data inside cookie un-encrypted.
-    secure:
-      process.env.NODE_ENV !== "development" /* To keep it a https only cookie.
-    The value will be false in development environment to allow sending cookie over http also.*/,
-  })
-);
+// CookieParser Middleware - will add cookies object to response object.
+app.use(cookieParser()); 
 
 //? ===================== Application Home Route =====================
 app.get("/health", (req, res) => {
   res
     .status(200)
-    .json({status: `${process.env.APPLICATION_NAME} and Systems are Up & Running.`});
+    .json({
+      status: `${process.env.APPLICATION_NAME} and Systems are Up & Running.`,
+    });
 });
 
 //? ===================== Routes Configuration =====================

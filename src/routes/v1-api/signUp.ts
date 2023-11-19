@@ -6,6 +6,7 @@ import { User } from "../../models/user";
 
 import { validateRequest } from "base-auth-handler";
 import { BadRequestError } from "base-error-handler";
+import generateToken from "../../utils/v1-api-utils/generateToken";
 
 const router = express.Router();
 
@@ -31,16 +32,8 @@ router.post(
     const user = User.build({ email: email, password: password });
     await user.save();
 
-    // Generate JWT
-    const userJwt = jwt.sign(
-      { id: user.id, email: user.email },
-      process.env.JWT_KEY!
-    );
-
-    // Store JWT on session object (for cookie-session middleware to create a cookie with jwt)
-    req.session = {
-      jwt: userJwt,
-    };
+    // Generate JWT and add to res.cookies object
+    generateToken(res, user.id, user.email);
 
     res.status(201).send(user);
   }

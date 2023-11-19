@@ -6,7 +6,8 @@ import { validateRequest } from "base-auth-handler";
 import { BadRequestError } from "base-error-handler";
 
 import { User } from "../../models/user";
-import { Password } from "../../utils/password";
+import { Password } from "../../utils/v1-api-utils/password";
+import generateToken from "../../utils/v1-api-utils/generateToken";
 
 const router = express.Router();
 
@@ -38,16 +39,8 @@ router.post(
       throw new BadRequestError("Invalid Credentials.");
     }
 
-    // Generate JWT
-    const userJwt = jwt.sign(
-      { id: existingUser.id, email: existingUser.email },
-      process.env.JWT_KEY!
-    );
-
-    // Store JWT on session object (for cookie-session middleware to create a cookie with jwt)
-    req.session = {
-      jwt: userJwt,
-    };
+    // Generate JWT and add to res.cookies object
+    generateToken(res, existingUser.id, existingUser.email);
 
     res.status(200).send(existingUser);
   }

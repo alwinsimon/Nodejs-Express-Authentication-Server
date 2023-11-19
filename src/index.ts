@@ -20,6 +20,9 @@ const startServer = async () => {
   if (!process.env.JWT_KEY) {
     throw new Error(`JWT_KEY must be defined !!!`);
   }
+  if (!process.env.JWT_TOKEN_DURATION) {
+    throw new Error(`JWT_TOKEN_DURATION must be defined !!!`);
+  }
   if (!process.env.MONGO_DB_URI) {
     throw new Error(`MONGO_DB_URI must be defined !!!`);
   }

@@ -9,7 +9,7 @@
     "test:ci": "jest",
     "clean": "del ./dist",
     "build": "npm run clean && tsc",
-    "server": "npm run build && node dist/index.js"
+    "server": "npx alwinsimon && npm run build && node dist/index.js"
   },
   "jest": {
     "preset": "ts-jest",

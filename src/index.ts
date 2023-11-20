@@ -9,6 +9,9 @@ import logger from "./logger";
 import { app } from "./app";
 
 const startServer = async () => {
+  // Log the server starting info
+  logger!.info("Starting Server !!!");
+
   // Check if ENV Variables exist
   if (!process.env.APPLICATION_NAME) {
     throw new Error(`APPLICATION_NAME must be defined !!!`);
@@ -35,19 +38,28 @@ const startServer = async () => {
   try {
     // ========================Connecting to Auth DB========================
     const dbConnection = await mongoose.connect(process.env.MONGO_DB_URI);
+
     console.log(
+      `Connected to ${SERVICE_NAME} MongoDB successfully with host as: ${dbConnection.connection.host} !!!!!`
+    );
+
+    // Log the server starting info
+    logger!.info(
       `Connected to ${SERVICE_NAME} MongoDB successfully with host as: ${dbConnection.connection.host} !!!!!`
     );
   } catch (err) {
     console.error(`Error Connecting to ${SERVICE_NAME} DB:`, err);
 
     // Save the error log
-    logger!.info(`Error Connecting to ${SERVICE_NAME} DB:`, err);
+    logger!.error(`Error Connecting to ${SERVICE_NAME} DB:`, err);
   }
 
   // ========================Starting Auth Server========================
   app.listen(PORT, () => {
     console.log(`${SERVICE_NAME} listening on PORT: ${PORT} !!!!!`);
+
+    // Log the server starting info
+    logger!.info(`Successfully Started ${SERVICE_NAME} on PORT: ${PORT} !!! `);
   });
 };
 

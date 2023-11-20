@@ -14,7 +14,7 @@ const morganLogger = () => {
 
   // Use the custom stream with morgan middleware
   const httpLogger = morgan(
-    '[:date[web]] :remote-addr - :remote-user :method :url HTTP/:http-version :status :total-time[digits]ms :res[content-length] ":referrer" ":user-agent"',
+    '[:date[web]] :remote-addr - :remote-user HTTP/:http-version :method :url STATUS: :status TotalTime: :total-time[digits]ms Content-length: :res[content-length] ":referrer" ":user-agent"',
     { stream: dualStream }
   );
 

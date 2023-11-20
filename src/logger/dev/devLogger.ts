@@ -1,5 +1,7 @@
-import winston, { Logger } from "winston";
 import path from "path";
+
+import winston, { Logger, format } from "winston";
+const { combine, timestamp } = format;
 
 // Type for the logger configuration
 export interface LoggerConfig {
@@ -16,7 +18,7 @@ const devLogger = (): Logger => {
   // devLogger configuration
   const devLoggerConfig: LoggerConfig = {
     level: "debug",
-    format: winston.format.json(),
+    format: combine(timestamp(), winston.format.json()),
     defaultMeta: { service: "Auth-server" },
     transports: [
       // Logger instance to log to console (terminal)

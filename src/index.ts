@@ -1,8 +1,10 @@
 import dotenv from "dotenv";
-import mongoose from "mongoose";
-
 // Initialize the environment variables from .env file
 dotenv.config();
+
+import mongoose from "mongoose";
+
+import logger from "./logger";
 
 import { app } from "./app";
 
@@ -38,6 +40,9 @@ const startServer = async () => {
     );
   } catch (err) {
     console.error(`Error Connecting to ${SERVICE_NAME} DB:`, err);
+
+    // Save the error log
+    logger!.info(`Error Connecting to ${SERVICE_NAME} DB:`, err);
   }
 
   // ========================Starting Auth Server========================

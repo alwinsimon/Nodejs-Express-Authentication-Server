@@ -16,15 +16,13 @@ app.set("trust proxy", true);
 app.use(json());
 
 // CookieParser Middleware - will add cookies object to response object.
-app.use(cookieParser()); 
+app.use(cookieParser());
 
 //? ===================== Application Home Route =====================
 app.get("/health", (req, res) => {
-  res
-    .status(200)
-    .json({
-      status: `${process.env.APPLICATION_NAME} and Systems are Up & Running.`,
-    });
+  res.status(200).json({
+    status: `${process.env.APPLICATION_NAME} and Systems are Up & Running.`,
+  });
 });
 
 //? ===================== Routes Configuration =====================

@@ -26,6 +26,7 @@
     "@types/express": "^4.17.18",
     "@types/jsonwebtoken": "^9.0.3",
     "@types/mongoose": "^5.11.97",
+    "@types/morgan": "^1.9.9",
     "base-auth-handler": "^1.0.1",
     "base-error-handler": "^1.0.1",
     "cookie-parser": "^1.4.6",

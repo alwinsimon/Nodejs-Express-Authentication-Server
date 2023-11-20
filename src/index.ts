@@ -9,9 +9,6 @@ import logger from "./logger";
 import { app } from "./app";
 
 const startServer = async () => {
-  // Log the server starting info
-  logger!.info("Starting Server !!!");
-
   // Check if ENV Variables exist
   if (!process.env.APPLICATION_NAME) {
     throw new Error(`APPLICATION_NAME must be defined !!!`);
@@ -32,6 +29,13 @@ const startServer = async () => {
     throw new Error(`MONGO_DB_URI must be defined !!!`);
   }
 
+  if (!logger) {
+    console.error("Logger not initialized.");
+    return;
+  }
+  // Log the server starting info
+  logger.info("Starting-up Server.");
+
   const PORT = process.env.PORT || 3000;
   const SERVICE_NAME = process.env.APPLICATION_NAME;
 
@@ -43,23 +47,23 @@ const startServer = async () => {
       `Connected to ${SERVICE_NAME} MongoDB successfully with host as: ${dbConnection.connection.host} !!!!!`
     );
 
-    // Log the server starting info
-    logger!.info(
-      `Connected to ${SERVICE_NAME} MongoDB successfully with host as: ${dbConnection.connection.host} !!!!!`
+    // Log the DB connection info
+    logger.info(
+      `Connected to ${SERVICE_NAME} MongoDB successfully with host as: ${dbConnection.connection.host}`
     );
   } catch (err) {
     console.error(`Error Connecting to ${SERVICE_NAME} DB:`, err);
 
     // Save the error log
-    logger!.error(`Error Connecting to ${SERVICE_NAME} DB:`, err);
+    logger.error(`Error Connecting to ${SERVICE_NAME} DB:`, err);
   }
 
   // ========================Starting Auth Server========================
   app.listen(PORT, () => {
     console.log(`${SERVICE_NAME} listening on PORT: ${PORT} !!!!!`);
 
-    // Log the server starting info
-    logger!.info(`Successfully Started ${SERVICE_NAME} on PORT: ${PORT} !!! `);
+    // Log the successful server starting info
+    logger!.info(`Successfully Started ${SERVICE_NAME} on PORT: ${PORT}`);
   });
 };
 

@@ -6,12 +6,17 @@ import cookieParser from "cookie-parser";
 
 import { errorHandler, NotFoundError } from "base-error-handler";
 
+import morganLogger from "./logger/HTTP-request-logger";
+
 import v1APIs from "./routes/v1-routes";
 
 const app = express();
 
 // Configuring express app to trust proxied requests from ingress-nginx.
 app.set("trust proxy", true);
+
+// Middleware to log all HTTP requests using morgan library
+app.use(morganLogger());
 
 app.use(json());
 

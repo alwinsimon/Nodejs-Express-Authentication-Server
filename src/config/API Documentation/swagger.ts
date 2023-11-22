@@ -7,9 +7,27 @@ const options: swaggerJsdoc.Options = {
     openapi: "3.0.0",
     info: {
       title: "A simple Authentication Server API Documentation",
-      version: "1.0",
+      version: "1.0.0",
     },
-    server: {},
+    servers: [
+      {
+        url: "http://localhost:3000",
+        description: "Dev server"
+      },
+      {
+        url: "https:auth.alwinsimon.com",
+        description: "Prod server"
+      },
+    ],
+    components: {
+      securitySchemes: {
+        cookieAuth: {
+          type: "apiKey",
+          in: "cookie",
+          name: "jwt",
+        },
+      },
+    },
   },
   apis: ["./src/routes/*.ts", "./src/models/*.ts"],
 };
@@ -21,7 +39,7 @@ function generateSwaggerDocs(app: Express, port: number) {
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
   // API Documentation in JSON format
-  app.get("/api-docs.json/", (req: Request, res: Response) => {
+  app.get("/api-docs.json", (req: Request, res: Response) => {
     res.setHeader("Content-Type", "application/json");
     res.status(200).send(swaggerSpec);
   });

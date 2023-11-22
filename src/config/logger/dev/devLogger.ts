@@ -15,28 +15,28 @@ export interface LoggerConfig {
   transports: winston.transport[];
 }
 
-const prodLogger = (): Logger => {
+const devLogger = (): Logger => {
   // Define the directory for log files
-  const prodLogDirectory = path.join(__dirname, "../../logs/prod");
+  const devLogDirectory = path.join(__dirname, "../../../../logs/dev");
 
-  // prodLogger configuration
-  const prodLoggerConfig: LoggerConfig = {
+  // devLogger configuration
+  const devLoggerConfig: LoggerConfig = {
     level: "debug",
     format: combine(timestamp(), winston.format.json()),
-    defaultMeta: { service: "Auth-server-prod" },
+    defaultMeta: { service: "Auth-server" },
     transports: [
       // Logger instance to log to console (terminal)
       // new winston.transports.Console(),
 
       // Logger instance to log errors to log file in logs directory.
       new winston.transports.File({
-        filename: path.join(prodLogDirectory, "error.log"),
+        filename: path.join(devLogDirectory, "error.log"),
         level: "error",
       }),
 
       // Logger instance to log all logs to log file in logs directory.
       new winston.transports.File({
-        filename: path.join(prodLogDirectory, "complete.log"),
+        filename: path.join(devLogDirectory, "complete.log"),
       }),
 
       // Logger instance to log all logs to MongoDB.
@@ -52,8 +52,8 @@ const prodLogger = (): Logger => {
   };
 
   // Create and return the logger
-  const logger = winston.createLogger(prodLoggerConfig);
+  const logger = winston.createLogger(devLoggerConfig);
   return logger;
 };
 
-export default prodLogger;
+export default devLogger;

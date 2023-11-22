@@ -58,7 +58,7 @@
  *         - cookieAuth: []
  *       responses:
  *         '200':
- *           description: Successful operation
+ *           description: Successful operation - Valid JWT
  *           content:
  *             application/json:
  *               schema:
@@ -79,8 +79,16 @@
  *                       exp:
  *                         type: integer
  *                         description: Token expiration timestamp
- *         '401':
- *           description: Unauthorized - user not authenticated
+ *         '207':
+ *           description: Successful operation - No valid JWT
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 properties:
+ *                   currentUser:
+ *                     type: null
+ *                     description: Indicates that no valid JWT was provided.
  */
 
 /**
@@ -109,7 +117,7 @@
  *                 password:
  *                   type: string
  *                   description: The password of the user.
- *                   example: password123
+ *                   example: password@123
  *       responses:
  *         '200':
  *           description: Successful authentication
@@ -170,7 +178,7 @@
  *                 password:
  *                   type: string
  *                   description: The password of the user.
- *                   example: password123
+ *                   example: password@123
  *       responses:
  *         '201':
  *           description: User created successfully
@@ -188,7 +196,7 @@
  *                     description: The user's email address
  *                     example: tester3@testing.com
  *         '400':
- *           description: Bad Request - Email already exists or invalid login parameters
+ *           description: Bad Request - Email already exists.
  *           content:
  *             application/json:
  *               schema:
@@ -203,31 +211,8 @@
  *                           type: string
  *                           description: Error message indicating the cause of the bad request.
  *                           example: Email already exists.
- */
-
-
-/**
- * @swagger
- * paths:
- *   /api/v1/signout:
- *     post:
- *       summary: Sign out the current user
- *       description: Clears the authentication token by removing it from the browser's cookies.
- *       tags: [Authentication]
- *       responses:
- *         '200':
- *           description: Successfully signed out
- *           content:
- *             application/json:
- *               schema:
- *                 type: object
- *                 properties:
- *                   status:
- *                     type: string
- *                     description: Sign out status message.
- *                     example: Signed out.
- *         '401':
- *           description: Unauthorized - user not authenticated
+ *         '422':
+ *           description: Unprocessable Entity - Invalid Login Parameters.
  *           content:
  *             application/json:
  *               schema:
@@ -240,10 +225,9 @@
  *                       properties:
  *                         message:
  *                           type: string
- *                           description: Error message indicating unauthorized access.
- *                           example: Unauthorized - user not authenticated.
+ *                           description: Error message indicating the cause of the bad request.
+ *                           example: Invalid Login Parameters.
  */
-
 
 /**
  * @swagger

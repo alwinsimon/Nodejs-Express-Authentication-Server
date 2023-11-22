@@ -17,7 +17,7 @@ export interface LoggerConfig {
 
 const devLogger = (): Logger => {
   // Define the directory for log files
-  const devLogDirectory = path.join(__dirname, "../../logs/dev");
+  const devLogDirectory = path.join(__dirname, "../../../../logs/dev");
 
   // devLogger configuration
   const devLoggerConfig: LoggerConfig = {

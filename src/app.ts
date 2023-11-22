@@ -7,10 +7,13 @@ import cookieParser from "cookie-parser";
 import { errorHandler, NotFoundError } from "base-error-handler";
 
 import morganLogger from "./config/logger/HTTP-request-logger";
+import generateSwaggerDocs from "./config/API Documentation/swagger";
 
 import v1APIs from "./routes/v1-routes";
 
 const app = express();
+
+const PORT = process.env.PORT || 3000;
 
 // Configuring express app to trust proxied requests from ingress-nginx.
 app.set("trust proxy", true);
@@ -22,6 +25,9 @@ app.use(json());
 
 // CookieParser Middleware - will add cookies object to response object.
 app.use(cookieParser());
+
+// Function to provide swagger documentation
+generateSwaggerDocs(app, PORT as number);
 
 //? ===================== Application Home Route =====================
 app.get("/health", (req, res) => {

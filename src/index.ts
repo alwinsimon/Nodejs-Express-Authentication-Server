@@ -4,7 +4,7 @@ dotenv.config();
 
 import mongoose from "mongoose";
 
-import logger from "./logger";
+import logger from "./config/logger";
 
 import { app } from "./app";
 
@@ -64,6 +64,9 @@ const startServer = async () => {
 
     // Log the successful server starting info
     logger!.info(`Successfully Started ${SERVICE_NAME} on PORT: ${PORT}`);
+
+    console.info(`API Docs available at http://localhost:${PORT}/api-docs`);
+    console.info(`API Docs JSON available at http://localhost:${PORT}/api-docs.json`);
   });
 };
 

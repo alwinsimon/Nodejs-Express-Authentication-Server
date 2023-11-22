@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 
 import { errorHandler, NotFoundError } from "base-error-handler";
 
-import morganLogger from "./logger/HTTP-request-logger";
+import morganLogger from "./config/logger/HTTP-request-logger";
 
 import v1APIs from "./routes/v1-routes";
 

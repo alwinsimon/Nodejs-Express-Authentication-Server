@@ -15,7 +15,7 @@ const options: swaggerJsdoc.Options = {
         description: "Dev server"
       },
       {
-        url: "https:auth.alwinsimon.com",
+        url: "https://auth.alwinsimon.com",
         description: "Prod server"
       },
     ],

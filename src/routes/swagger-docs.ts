@@ -37,10 +37,10 @@
  *               schema:
  *                 type: object
  *                 properties:
- *                   Status:
+ *                   status:
  *                     type: string
  *                     description: Status message indicating that the application and systems are up.
- *                   Date_Time:
+ *                   dateTime:
  *                     type: string
  *                     description: Current date and time in web format.
  */

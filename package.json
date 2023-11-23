@@ -19,8 +19,8 @@
     ]
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Dr. Alwin Simon",
+  "license": "MIT",
   "dependencies": {
     "@types/cookie-parser": "^1.4.6",
     "@types/express": "^4.17.18",

@@ -35,8 +35,17 @@ const options: swaggerJsdoc.Options = {
 const swaggerSpec = swaggerJsdoc(options);
 
 function generateSwaggerDocs(app: Express, port: number) {
+
+  // ======================= CSS Options =======================
+  let styleOptions;
+  // Uncomment the following line to remove default header in the API Documentation
+  // options = {
+  //   customCss: '.swagger-ui .topbar { display: none }'
+  // };
+
+
   // Swagger documentation page
-  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, styleOptions));
 
   // API Documentation in JSON format
   app.get("/api-docs.json", (req: Request, res: Response) => {

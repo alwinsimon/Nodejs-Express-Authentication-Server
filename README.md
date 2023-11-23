@@ -18,6 +18,14 @@ This repository contains a production-ready authentication server built with Nod
 **Note:** The detailed API documentation is available on Postman. 
 Please refer to [API Documentation on Postman](https://documenter.getpostman.com/view/27773540/2s9YeBeZLV).
 
+Additionally, Swagger is integrated for convenient exploration of the API:
+
+- Swagger UI: [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+
+You can also access the API documentation in JSON format:
+
+- API Docs JSON: [http://localhost:3000/api-docs.json](http://localhost:3000/api-docs.json)
+
 ### Dev Server
 - Base URL: [http://localhost:3000](http://localhost:3000)
 

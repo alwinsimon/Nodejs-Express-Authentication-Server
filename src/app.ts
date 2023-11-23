@@ -40,13 +40,13 @@ app.get("/health", (req, res) => {
     hour: "numeric",
     minute: "numeric",
     second: "numeric",
-    timeZoneName: "short",
+    timeZone: "UTC",
   };
   const formattedDate = currentDate.toLocaleString("en-US", options);
 
   res.status(200).json({
-    Status: `${process.env.APPLICATION_NAME} and Systems are Up & Running.`,
-    Date_Time: formattedDate,
+    status: `${process.env.APPLICATION_NAME} and Systems are Up & Running.`,
+    dateTime: formattedDate,
   });
 });
 

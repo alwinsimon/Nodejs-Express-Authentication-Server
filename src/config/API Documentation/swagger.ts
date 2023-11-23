@@ -11,12 +11,12 @@ const options: swaggerJsdoc.Options = {
     },
     servers: [
       {
-        url: "http://localhost:3000",
-        description: "Dev server"
-      },
-      {
         url: "https://auth.alwinsimon.com",
         description: "Prod server"
+      },
+      {
+        url: "http://localhost:3000",
+        description: "Dev server"
       },
     ],
     components: {

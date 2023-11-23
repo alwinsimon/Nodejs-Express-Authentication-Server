@@ -26,7 +26,7 @@
  *   /health:
  *     get:
  *       summary: Check the health of the application
- *       description: Returns the health status of the application and its systems.
+ *       description: Returns the health status of the application and its systems along with the current date and time.
  *       tags:
  *         - Health
  *       responses:
@@ -37,10 +37,14 @@
  *               schema:
  *                 type: object
  *                 properties:
- *                   status:
+ *                   Status:
  *                     type: string
  *                     description: Status message indicating that the application and systems are up.
+ *                   Date_Time:
+ *                     type: string
+ *                     description: Current date and time in web format.
  */
+
 
 /**
  * @swagger

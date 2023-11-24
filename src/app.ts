@@ -8,12 +8,17 @@ import { errorHandler, NotFoundError } from "base-error-handler";
 
 import morganLogger from "./config/logger/HTTP-request-logger";
 import generateSwaggerDocs from "./config/API Documentation/swagger";
+import apiRateLimiter from "./config/api-rate-limiter/api-rate-limiter";
 
 import v1APIs from "./routes/v1-routes";
 
+const PORT = process.env.PORT || 3000;
+
+// Initialize express app
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+// Rate limiter for api calls. 
+app.use(apiRateLimiter);
 
 // Configuring express app to trust proxied requests from ingress-nginx.
 app.set("trust proxy", true);

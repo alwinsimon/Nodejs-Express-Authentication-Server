@@ -17,14 +17,14 @@ const PORT = process.env.PORT || 3000;
 // Initialize express app
 const app = express();
 
+// Middleware to log all HTTP requests using morgan library
+app.use(morganLogger());
+
 // Rate limiter for api calls. 
 app.use(apiRateLimiter);
 
 // Configuring express app to trust proxied requests from ingress-nginx.
 app.set("trust proxy", true);
-
-// Middleware to log all HTTP requests using morgan library
-app.use(morganLogger());
 
 app.use(json());
 

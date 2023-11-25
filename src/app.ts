@@ -8,7 +8,9 @@ import { errorHandler, NotFoundError } from "base-error-handler";
 
 import morganLogger from "./config/logger/HTTP-request-logger";
 import generateSwaggerDocs from "./config/API Documentation/swagger";
+
 import apiRateLimiter from "./config/api-rate-limiter/api-rate-limiter";
+import apiSpeedLimiter from "./config/api-rate-limiter/api-speed-limiter";
 
 import v1APIs from "./routes/v1-routes";
 
@@ -19,6 +21,9 @@ const app = express();
 
 // Middleware to log all HTTP requests using morgan library
 app.use(morganLogger());
+
+// Speed limiter for api calls. 
+app.use(apiSpeedLimiter);
 
 // Rate limiter for api calls. 
 app.use(apiRateLimiter);

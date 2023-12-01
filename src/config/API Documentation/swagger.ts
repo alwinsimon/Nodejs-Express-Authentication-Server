@@ -39,7 +39,7 @@ function generateSwaggerDocs(app: Express, port: number) {
   // ======================= CSS Options =======================
   let styleOptions;
   // Uncomment the following line to remove default header in the API Documentation
-  // options = {
+  // styleOptions = {
   //   customCss: '.swagger-ui .topbar { display: none }'
   // };
 

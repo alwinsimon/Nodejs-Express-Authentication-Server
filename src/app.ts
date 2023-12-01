@@ -12,6 +12,7 @@ import generateSwaggerDocs from "./config/API Documentation/swagger";
 import apiRateLimiter from "./config/api-rate-limiter/api-rate-limiter";
 import apiSpeedLimiter from "./config/api-rate-limiter/api-speed-limiter";
 
+import { serverHealthCheck } from "./routes/general-api/server-health";
 import v1APIs from "./routes/v1-routes";
 
 const PORT = process.env.PORT || 3000;
@@ -38,27 +39,10 @@ app.use(cookieParser());
 
 // Function to provide swagger documentation
 generateSwaggerDocs(app, PORT as number);
+// use GET '/api-docs' or GET '/api-docs.json' to view API docs.
 
 //? ===================== Application Health Check Route =====================
-app.get("/health", (req, res) => {
-  const currentDate = new Date();
-  const options: Intl.DateTimeFormatOptions = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-    second: "numeric",
-    timeZone: "UTC",
-  };
-  const formattedDate = currentDate.toLocaleString("en-US", options);
-
-  res.status(200).json({
-    status: `${process.env.APPLICATION_NAME} and Systems are Up & Running.`,
-    dateTime: formattedDate,
-  });
-});
+app.get("/health", serverHealthCheck);
 
 //? ===================== Routes Configuration =====================
 // =====================V1 APIs Routes Configuration =================
